@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+
+<title>Upload Assignment</title>
+
+<body>
+	<div th:insert="fragments/commonui :: userhead"></div>
+	<div th:insert="fragments/commonui :: usermenu"></div>
+
+
+	<section id="cover" class="min-vh-100" style="width: 100%;">
+		<div class="container">
+			<div class="card">
+				<div class="card-header  bg-gradient text-white text-center" style="background: smoke-white">
+
+				</div>
+
+
+				<div class="card-body mt-2 ">
+					<form id="conference" th:action="@{/assignment/answer-uploadfile}" enctype="multipart/form-data"
+						method="POST" th:object="${assignmentStudentAssign}" style="align-self: center; width: 100%">
+
+						<div style="text-align: center; margin-bottom: 30px;">
+							<h3>Upload Answer</h3>
+						</div>
+						<div class="container-fluid text-center align-item-center mr-4" style="margin-right: 30px;">
+							<div class="row">
+								<div class="col-2">
+									<label>NAME</label>
+								</div>
+								<div class="col-5">
+									<input type="hidden" required="required" name="assignmentstudentId" id="assignmentstudentId"
+										th:field="*{assignmentstudentId}" class="form-control" />
+									<input type="hidden" required="required" name="name" id="name"
+										th:field="*{assignment.assignmentId}" class="form-control" />
+									<input type="text" required="required" readonly name="name" id="name"
+										th:field="*{assignment.name}" class="form-control" />
+
+									<!--					<input type="hidden" name="conferenceId" id="conferenceId"
+										th:field="*{conferenceId}" class="form-control" />
+-->
+								</div>
+								<div class="col-5">
+									<span id="nameError"></span>
+								</div>
+
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-2">
+									<label>SUBJECT</label>
+								</div>
+								<div class="col-5">
+									<input type="hidden" required="required" name="name" id="name"
+										th:field="*{assignment.subject.subjectId}" class="form-control" />
+									<input type="text" required="required" readonly name="subject" id="subject"
+										th:field="*{assignment.subject.subjectName}" class="form-control" />
+
+								</div>
+								<div class="col-5">
+									<span id="subjectError"></span>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-2">
+									<label>TEACHER</label>
+								</div>
+								<div class="col-5" id="ht">
+
+									<input type="hidden" required="required" name="teacher" id="teacher"
+										th:field="*{assignment.teacher.teacherId}" class="form-control" />
+									<input type="text" required="required" readonly id="subject"
+										th:field="*{assignment.teacher.name}" class="form-control" />
+								</div>
+								<div class="col-5">
+									<span id="teacherError"></span>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-2">
+									<label>BATCH</label>
+								</div>
+								<div class="col-5">
+
+									<input type="hidden" required="required" name="batch" id="batch"
+										th:field="*{assignment.Batch.batchId}" class="form-control" />
+									<input type="text" required="required" readonly th:field="*{assignment.Batch.batch}"
+										class="form-control" />
+								</div>
+								<div class="col-5">
+									<span id="batchError"></span>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-2">
+									<label>UPLOAD ANSWER</label>
+								</div>
+								<div class="col-5">
+									<input type="file" th:field="*{uploadFile}" id="uploadFile" accept=".pdf" required
+										class="form-control" />
+								</div>
+								<div class="col-5">
+									<span id="uploadFileError"></span>
+								</div>
+							</div>
+							<br>
+
+
+
+							<input type="submit" value="SAVE" class="btn btn-success text-center mt-5 w-100" />
+						</div>
+					</form>
+				</div>
+				<!--card body end-->
+
+				<div class="card-header bg-secondary bg-gradient text-white text-center" th:if="${message != null}">
+					<span th:text="${message}"></span>
+				</div>
+
+			</div>
+			<!-- card end -->
+
+		</div>
+	</section>
+	<script type="text/javascript" th:src="@{/js/conference.js}"></script>
+
+
+</body>
+
+</html>

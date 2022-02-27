@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Conference Data</title>
+<!-- <link rel="icon" th:href="@{/images/unox_title.ico}" type="image/x-icon"> -->
+</head>
+<body>
+	<div th:insert="fragments/commonui :: userhead"></div>
+	<div th:insert="fragments/commonui :: usermenu"></div>
+	<div class="container-fulter">
+
+		<div class="card">
+
+			<div class="card-header bg-secondary bg-gradient text-white text-center">
+				<h3>Meeting Join</h3>
+			</div>
+
+			<div class="card-body">
+
+				<a class="btn btn-info btn-gradient"
+									th:href="${meeting}" target="_blank">JOIN</a>
+
+	</div>
+	<!-- container end -->
+</body>
+</html>

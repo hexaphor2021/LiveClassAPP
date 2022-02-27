@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Profile View</title>
+<link rel = "icon" th:href="@{/images/unox_title.ico}" 
+        type = "image/x-icon">
+</head>
+<body>
+	<div th:insert="fragments/commonui :: userhead"></div>
+	<div th:insert="fragments/commonui :: usermenu"></div>
+	<div class="container">
+
+		<div class="card">
+
+			<div class="card-header bg-secondary bg-gradient text-white text-center">
+				<h3>MY PROFILE</h3>
+			</div>
+
+			<div class="card-body">
+
+				<hr />
+
+				<table class="table table-hover">
+					<tr class="bg-secondary bg-gradient text-white">
+						<th>NAME</th>
+						<td th:text="${student.name}"></td>
+					</tr>
+					<tr class="bg-secondary bg-gradient text-white">
+						<th>USERNAME</th>
+						<td th:text="${student.loginUser.username}"></td>
+					</tr>
+					<tr class="bg-secondary bg-gradient text-white">
+						<th>PASSWORD</th>
+						<td>
+						<div>
+								<a class="btn btn-danger"
+									th:href="@{/student/passwordModify}">UPDATE PASSWORD</a>
+							</div>
+							</td>
+					</tr>
+					<tr class="bg-secondary bg-gradient text-white">
+						<th>EMAIL</th>
+						<td th:text="${student.email}"></td>
+					</tr>
+					
+					<tr class="bg-secondary bg-gradient text-white">
+						<th>SUBJECT</th>
+						<td th:text="${student.batch.batch}"></td>
+					</tr>
+						
+				</table>
+			</div>
+			<!--card body end-->
+
+		</div>
+		<!-- card end -->
+
+	</div>
+	<!-- container end -->
+</body>
+</html>

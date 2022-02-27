@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Error</title>
+<link rel = "icon" th:href="@{/images/unox_title.ico}" 
+        type = "image/x-icon">
+</head>
+<body>
+	<div th:insert="fragments/commonui :: userhead"></div>
+	<div th:insert="fragments/commonui :: usermenu"></div>
+
+<h1 class="badge badge-danger">ERROR MESSAGE : <span  style="color:blue" th:text="${message}"></span></h1>
+<br>
+<h1 class="badge badge-danger">ERROR CODE    : <span  style="color:blue"th:text="${status}"></span></h1>
+<br><br><br>
+<div align="center">
+		<img th:src="@{/images/404.jpg}" />
+	</div>
+</body>
+</html>

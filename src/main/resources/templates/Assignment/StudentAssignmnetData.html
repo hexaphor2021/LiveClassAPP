@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Calender student View</title>
+	<!-- <link rel="icon" th:href="@{/images/unox_title.ico}" type="image/x-icon"> -->
+</head>
+
+<body>
+	<div th:insert="fragments/commonui :: userhead"></div>
+	<div th:insert="fragments/commonui :: usermenu"></div>
+	<div class="container-fulter">
+
+		<div class="card">
+
+			<div class="card-header bg-secondary bg-gradient text-white text-center">
+				<h3>Assignment Student View</h3>
+			</div>
+
+			<div class="card-body">
+
+				<hr>
+				<!-- <form action="all" method="GET">
+					<div class="row">
+						<div class="col-4">
+							<input type="text" name="name" class="form-control"
+								placeholder="Enter subject name" />
+						</div>
+						<div class="col-4">
+							<input type="submit" value="Search" class="btn btn-secondary btn-gradient" />
+						</div>
+					</div>
+				</form> -->
+				<hr>
+
+				<hr />
+
+				<table class="table table-hover">
+					<tr class="bg-secondary bg-gradient text-white">
+						<th>STARTDATE</th>
+						<th>STARTTIME</th>
+						<th>ENDDATE</th>
+
+						<th>ENDTIME</th>
+						<th>BATCH</th>
+						<th>TEACHER</th>
+						<th>SUBJECT</th>
+					</tr>
+					<tr>
+						<td th:text="${assignment.startDatetime}"></td>
+						<td th:text="${assignment.startTime}"></td>
+						<td th:text="${assignment.endDatetime}"></td>
+
+						<td th:text="${assignment.endTime}"></td>
+						<td th:text="${assignment.Batch.batch}"></td>
+						<td th:text="${assignment.teacher.name}"></td>
+						<td th:text="${assignment.subject.subjectName}"></td>
+					</tr>
+				</table>
+				<br>
+
+				<table class="table table-hover">
+					<tr class="bg-secondary bg-gradient text-white">
+						<th>NAME</th>
+						<th>REGISTRATION</th>
+						<th>MOBILE</th>
+						<th>STATUS</th>
+						<th>DOWNLOAD</th>
+					</tr>
+					<tr th:each="ob:${assignment.listAssignStudent}">
+					
+						<td th:text="${ob.student.name}"></td>
+						<td th:text="${ob.student.registrationNo}"></td>
+						<td th:text="${ob.student.mobile}"></td>
+						<td th:text="${ob.status}"></td>
+						<td th:if="${ob.status=='Upload'}">
+							<div>
+								<a class="btn btn-info btn-gradient"
+									th:href="@{/assignment/student-answerfile?studentAssignmentId={id}&filePath={uploadFilePath}(id=${ob.assignmentstudentId},uploadFilePath=${ob.filePath})}">Download</a>
+							</div>
+
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!--card body end-->
+
+		</div>
+		<!-- card end -->
+
+		<!-- PAGINATION  START-->
+
+
+		<!-- PAGINATION  END-->
+
+	</div>
+	<!-- container end -->
+</body>
+
+</html>

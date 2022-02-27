@@ -1,0 +1,105 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <title>Unox Portal</title>
+</head>
+<body>
+	<div th:insert="fragments/commonui :: userhead"></div>
+<!-- <div align="center">
+		<img th:src="@{/images/unox.png}" />
+	</div> -->
+<!-- <div style="background: url(https://i.postimg.cc/ZnHTP71s/aircraft-airplane-boat-1575833.jpg)" class="page-holder bg-cover"> -->
+<div style="background: url(https://mdbootstrap.com/img/new/fluid/nature/011.jpg)" class="page-holder bg-cover">
+<!-- <div
+  class="bg-image"
+  style="
+    background-image: url('https://mdbcdn.b-cdn.net/img/new/standard/city/041.jpg');
+    height: 400px;
+  "
+></div> -->
+    <!-- Main Navbar -->
+    
+     
+     <section class="p-3 mb-2 bg-gradient text-dark" style="background: green;">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-white text-center">
+                        <i class=" text-warning text-center"></i></h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Login Section -->
+<section class="p-5">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-4 m-auto">
+                <div class="card">
+                    <div class="card-header bg-secondary bg-gradient text-white text-center">
+                        <h3>Login </h3>
+                    </div>
+                    <form method="POST" th:action="@{/login}">
+                        <div class="card-body bg-light">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="username" placeholder="User Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="Password">
+                            </div>
+                             <input type="submit" class="btn btn-info btn-block" value="Sign in">
+                           
+                        </div>
+                        <div class="card-footer bg-light">
+							
+							 <div th:if="${param.error}" class="text-danger card-footer  text-center">
+				<b>Invalid user details</b>
+				</div>
+				<div th:if="${param.success}" class="text-success card-footer  text-center">
+				<b>User logged out successfully</b>
+				</div>
+
+		</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+    <!-- Main Footer -->
+   <!--  <footer class="bg-warning text-white text-center p-3">
+        <div class="container">
+            <div class="row">
+                 <div class="social-icon text-center copy col">
+                    <a href="#"><span><i class="fa fa-facebook"></i></span></a>
+                    <a href="#"><span><i class="fa fa-twitter"></i></span></a>
+                    <a href="#"><span><i class="fa fa-linkedin"></i></span></a>
+                    <a href="#"><span><i class="fa fa-instagram"></i></span></a>
+                    <a href="https://youtu.be/LOjVU-squBE"><span><i class="fa fa-youtube-play"></i></span></a>
+                    
+                    <h6> &nbsp;&nbsp;  &copy; 2021 Designed By <a href="https://www.unoxportal.com/">unox</a></h6>
+                </div>
+            </div>
+        </div>
+    </footer> -->
+    
+    <footer class=" text-white text-center p-3" style="background: green;">
+        <div class="container wow fadeInUp">
+            &copy; 2021 Transforming the way people learn  All Rights Reserved.
+            <br/>
+            <a href="#">Privacy Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+            <a href="#">Terms & Conditions</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
+            <a href="http://www.hexaphor.com/">Hexaphor</a>
+        </div>
+    </footer>
+
+</div>
+
+    </body>
+</html>
+

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+
+<title>Calender Update</title>
+
+<body>
+	<div th:insert="fragments/commonui :: userhead"></div>
+	<div th:insert="fragments/commonui :: usermenu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-primary text-white text-center">
+				<h3>Calender</h3>
+			</div>
+
+
+			<div class="card-body">
+				<form id="conference" th:action="@{/conference/update}" method="POST"
+					th:object="${conference}">
+
+					<div class="row">
+						<div class="col-2">
+							<label>START DATE</label>
+						</div>
+						<div class="col-5">
+							<input type="datetime" name="startDate" id="startDate" th:field="*{startDate}"
+								class="form-control" /> <input type="hidden" name="conferenceId"
+								id="conferenceId" th:field="*{conferenceId}" class="form-control" />
+						</div>
+						<div class="col-5">
+							<span id="startError"></span>
+						</div>
+
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-2">
+							<label>END TIME</label>
+						</div>
+						<div class="col-5">
+							<input type="datetime-local" name="endDate" id="endDate" th:field="*{endDate}"
+								class="form-control" /> <input type="hidden" name="conferenceId"
+								id="conferenceId" th:field="*{conferenceId}" class="form-control" />
+						</div>
+						<div class="col-5">
+							<span id="startError"></span>
+						</div>
+
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-2">
+							<label>START TIME</label>
+						</div>
+						<div class="col-5">
+							<input type="time" name="startTime" id="startTime" th:field="*{startTime}"
+								class="form-control" /> 
+						</div>
+						<div class="col-5">
+							<span id="startTimeError"></span>
+						</div>
+
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-2">
+							<label>END TIME</label>
+						</div>
+						<div class="col-5">
+							<input type="time" name="endTime" id="endTime" th:field="*{endTime}"
+								class="form-control" /> 
+						</div>
+						<div class="col-5">
+							<span id="endTimeError"></span>
+						</div>
+
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-2">
+							<label>BATCH</label>
+						</div>
+						<div class="col-5">
+							<select th:field="*{batch.batchId}" id="batch"
+								class="form-control">
+								<option value="">-SELECT-</option>
+								<option th:each="ob:${batchs}" th:value="${ob.key}"
+									th:text="${ob.value}"></option>
+							</select>
+						</div>
+						<div class="col-5">
+							<span id="batchError"></span>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-2">
+							<label>TEACHER</label>
+						</div>
+						<div class="col-5">
+							<select th:field="*{teacher.teacherId}" id="teacher"
+								class="form-control">
+								<option value="">-SELECT-</option>
+								<option th:each="ob:${teachers}" th:value="${ob.key}"
+									th:text="${ob.value}"></option>
+							</select>
+						</div>
+						<div class="col-5">
+							<span id="teacherError"></span>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-2">
+							<label>SUBJECT</label>
+						</div>
+						<div class="col-5">
+							<select th:field="*{subject.subjectId}" id="subject"
+								class="form-control">
+								<option value="">-SELECT-</option>
+								<option th:each="ob:${subjects}" th:value="${ob.key}"
+									th:text="${ob.value}"></option>
+							</select>
+						</div>
+						<div class="col-5">
+							<span id="subjectError"></span>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-2">
+							<label>STUDENT</label>
+						</div>
+						<div class="col-5">
+							<select th:field="*{student.studentId}" id="student"
+								class="form-control" multiple="multiple">
+								<option value="">-SELECT-</option>
+								<option th:each="ob:${students}" th:value="${ob.key}"
+									th:text="${ob.value}"></option>
+							</select>
+						</div>
+						<div class="col-5">
+							<span id="studentError"></span>
+						</div>
+					</div>
+					<input type="submit" value="UPDATE" class="btn btn-success" />
+				</form>
+			</div>
+			<!--card body end-->
+
+			<div class="card-footer bg-info text-white text-center"
+				th:if="${message != null}">
+				<span th:text="${message}"></span>
+			</div>
+
+		</div>
+		<!--card end-->
+
+	</div>
+	<script>
+$(document).ready(function(){
+    //1. hide error section
+    $("#yearError").hide();
+    $("#classNameError").hide();
+    $("#streamError").hide();
+    $("#batchError").hide();
+    $("#batch").value = "textValue";
+    //2. error variable
+    var yearError = false;
+    var classNameError = false;
+    var streamError = false;
+    var batchError = false;
+
+    //3. validate function
+    function validate_year() {
+        var val = $("#year").val();
+        var exp = /^[0-9]{0,10}$/;
+        if(val=='') {
+            $("#yearError").show();
+            $("#yearError").html(" year can not be empty");
+            $("#yearError").css("color","red");
+            yearError = false;
+        } 
+        else if(!exp.test(val)) {
+            $("#yearError").show();
+            $("#yearError").html("Please enter only number ");
+            $("#yearError").css("color","red");
+            yearError = false;
+        }
+        else{
+
+            $("#yearError").hide();
+            yearError = true;
+        }
+        return yearError;
+    }
+
+
+    function validate_classname() {
+        var val = $("#className").val();
+        if(val=='') {
+            $("#classNameError").show();
+            $("#classNameError").html("class name can't be empty ");
+            $("#classNameError").css("color","red");
+            classNameError = false;
+        } 
+       else{
+            $("#classNameError").hide();
+            classNameError = true;
+        }
+        return classNameError;
+    }
+
+    function validate_stream() {
+        var val = $("#stream").val();
+        if(val=='') {
+            $("#streamError").show();
+            $("#streamError").html("stream can't be empty ");
+            $("#streamError").css("color","red");
+            streamError = false;
+        } 
+       else{
+           var year= $("#year").val();
+           var className= $("#className").val();
+           var batch =year + className + val;
+           alert(batch)
+           $('body batch').val("hhhhh");
+            $("#streamError").hide();
+            streamError = true;
+        }
+        return streamError;
+    }
+
+    function validate_batch() {
+        var val = $("#batch").val();
+        if(val=='') {
+            $("#batchError").show();
+            $("#batchError").html("batch can not be empty");
+            $("#batchError").css("color","red");
+            batchError = false;
+        } 
+        else{
+            var id="";
+            if($("#id").val()!=undefind){
+                id=$("#id").val();
+            }
+            
+            $("#batchError").hide();
+            //ajax call start
+            $.ajax({
+                url : 'validate',
+                data: {'batch':val,'id':id},
+                success:function(resTxt) {
+                    if(resTxt=='') { //no error
+                        $("#batchError").hide();
+                        batchError = true;
+                    } else{ 
+                        $("#batchError").show();
+                        $("#batchError").html(resTxt);
+                        $("#batchError").css("color","red");
+                        batchError = false;
+                    }
+                }
+            });
+        }
+        return batchError;
+    }
+
+    //4. link input with action
+    $("#year").keyup(function(){
+        validate_year();
+    });
+    $("#className").keyup(function(){
+        validate_classname();
+    });
+    $("#stream").keyup(function(){
+        validate_stream();
+    });
+    
+    //5. submit button
+    $("#batch").submit(function(){
+        //call all validate functions
+        validate_year();
+         validate_classname();
+         validate_stream();
+         validate_batch();
+        // check all error variables
+        // if all true then submit form return true
+        //&& instituteError && addressError
+        if(yearError && classNameError && streamError && batchError )
+            return true;
+        // else false
+        else return false;
+    });
+
+});
+
+
+    </script>
+</body>
+
+</html>

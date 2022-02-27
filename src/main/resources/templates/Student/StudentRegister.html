@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+
+<title>Student Register</title>
+
+<body>
+	<div th:insert="fragments/commonui :: userhead"></div>
+	<div th:insert="fragments/commonui :: usermenu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-secondary bg-gradient text-white text-center">
+				<h3>STUDENT REGISTRATION</h3>
+			</div>
+
+
+			<div class="card-body">
+				<form id="student" th:action="@{/student/save}" method="POST"
+					th:object="${student}">
+
+					<div class="row">
+						<div class="col-2">
+							<label>NAME</label>
+						</div>
+						<div class="col-5">
+							<input type="text" name="name" id="name" th:field="*{name}"
+								class="form-control" />
+								<input type="hidden" name="studentId" id="studentId" th:field="*{studentId}"
+								class="form-control" />
+						</div>
+						<div class="col-5">
+							<span id="nameError"></span>
+						</div>
+
+					</div><br>
+					<div class="row">
+						<div class="col-2">
+							<label>REGISTRATION NO</label>
+						</div>
+						<div class="col-5">
+							<input type="text" th:field="*{registrationNo}"
+								id="registrationNo" class="form-control" />
+						</div>
+						<div class="col-5">
+							<span id="registrationNoError"></span>
+						</div>
+					</div><br>
+
+					<div class="row">
+						<div class="col-2">
+							<label>MOBILE NUMBER</label>
+						</div>
+						<div class="col-5">
+							<input type="text" name="mobile" id="mobile" th:field="*{mobile}"
+								class="form-control" />
+						</div>
+						<div class="col-5">
+							<span id="mobileError"></span>
+						</div>
+					</div><br>
+					<div class="row">
+						<div class="col-2">
+							<label>EMAIL</label>
+						</div>
+						<div class="col-5">
+							<input type="text" name="email" id="email" th:field="*{email}"
+								class="form-control" />
+						</div>
+						<div class="col-5">
+							<span id="emailError"></span>
+						</div>
+					</div><br>
+					<div class="row">
+						<div class="col-2">
+							<label>PARENT NAME</label>
+						</div>
+						<div class="col-5">
+							<input type="text" name="parentName" id="parentName"
+								th:field="*{parentName}" class="form-control" />
+						</div>
+						<div class="col-5">
+							<span id="parentNameError"></span>
+						</div>
+					</div><br>
+					<div class="row">
+						<div class="col-2">
+							<label>ADDRESS</label>
+						</div>
+						<div class="col-5">
+							<textarea name="address" id="address" th:field="*{address}"
+								class="form-control" /></textarea>
+						</div>
+						<div class="col-5">
+							<span id="addressError"></span>
+						</div>
+					</div><br>
+					<div class="row">
+						<div class="col-2">
+							<label>PASSWORD</label>
+						</div>
+						<div class="col-5">
+							<input type="password" name="password" id="password"
+								th:field="*{password}" class="form-control" />
+						</div>
+						<div class="col-5">
+							<span id="passwordError"></span>
+						</div>
+					</div><br>
+					<div class="row">
+						<div class="col-2">
+							<label>BATCH</label>
+						</div>
+						<div class="col-5">
+							<select th:field="*{batch.batchId}" id="batch"
+								class="form-control">
+								<option value="">-SELECT-</option>
+								<option th:each="ob:${batchs}" th:value="${ob.key}"
+									th:text="${ob.value}"></option>
+							</select>
+						</div>
+						<div class="col-5">
+							<span id="batchError"></span>
+						</div>
+					</div><br>
+					<input type="submit" value="SAVE" class="btn  btn-secondary btn-gradient" />
+				</form>
+			</div>
+			<!--card body end-->
+
+			<div class="card-header bg-secondary bg-gradient text-white text-center"
+				th:if="${message != null}">
+				<span th:text="${message}"></span>
+			</div>
+
+		</div>
+		<!--card end-->
+
+	</div>
+	<script type="text/javascript" th:src="@{/js/student.js}"></script>
+</body>
+
+</html>

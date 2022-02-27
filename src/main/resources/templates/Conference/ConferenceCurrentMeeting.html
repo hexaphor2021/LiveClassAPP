@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+
+
+<title>Current Meeting</title>
+<body>
+	<div th:insert="fragments/commonui :: userhead"></div>
+	<div th:insert="fragments/commonui :: usermenu"></div>
+	
+
+<section id="cover" class="min-vh-100" style="width: 100%;">
+	<div class="container">
+		<div class="card">
+			<div class="card-header  bg-gradient text-white text-center" style="background: smoke-white">
+				
+			</div>
+
+
+			<div class="card-body mt-2 " >
+				<form id="conference" th:action="@{/conference/currentsave}" method="POST"
+					th:object="${conference}" style="align-self: center; width: 100%" >
+					
+					<div style="text-align: center; margin-bottom: 30px;">
+					 <h3>Current Meeting</h3>
+					 </div>
+                    <div class="container-fluid text-center align-item-center mr-4" style="margin-right: 30px;">
+					<input type="hidden" name="conferenceId"
+								id="conferenceId" th:field="*{conferenceId}" class="form-control" />
+					<!--<div class="row">
+						<div class="col-2">
+							<label>Start Time</label>
+						</div>
+						<div class="col-5">
+							<input type="datetime-local" required="required" name="startDate" id="startDate" th:field="*{startDate}"
+								class="form-control" /> <input type="hidden" name="conferenceId"
+								id="conferenceId" th:field="*{conferenceId}" class="form-control" />
+						</div>
+						<div class="col-5">
+							<span id="startError"></span>
+						</div>
+
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-2">
+							<label>End Time</label>
+						</div>
+						<div class="col-5">
+							<input type="datetime-local" required="required" name="endDate" id="endDate" th:field="*{endDate}"
+								class="form-control" /> <input type="hidden" name="conferenceId"
+								id="conferenceId" th:field="*{conferenceId}" class="form-control" />
+						</div>
+						<div class="col-5">
+							<span id="startError"></span>
+						</div>
+
+					</div>
+					<br>-->
+					<!-- <div class="row">
+						<div class="col-2">
+							<label>START TIME</label>
+						</div>
+						<div class="col-5">
+							<input type="time" name="startTime" id="startTime" th:field="*{startTime}"
+								class="form-control" /> 
+						</div>
+						<div class="col-5">
+							<span id="startTimeError"></span>
+						</div>
+
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-2">
+							<label>END TIME</label>
+						</div>
+						<div class="col-5">
+							<input type="time" name="endTime" id="endTime" th:field="*{endTime}"
+								class="form-control" /> 
+						</div>
+						<div class="col-5">
+							<span id="endTimeError"></span>
+						</div>
+
+					</div>
+					<br> -->
+					<div class="row">
+						<div class="col-2">
+							<label>Subject</label>
+						</div>
+						<div class="col-5">
+							<select th:field="*{subject.subjectId}" required="required" id="subject"
+								class="form-control">
+								<option value="">-SELECT-</option>
+								<option th:each="ob:${subjects}" th:value="${ob.key}"
+									th:text="${ob.value}"></option>
+							</select>
+						</div>
+						<div class="col-5">
+							<span id="subjectError"></span>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-2">
+							<label>Teacher</label>
+						</div>
+						<div class="col-5"  id="ht">
+							<select th:field="*{teacher.teacherId}" required="required" id="teacher"
+								class="form-control">
+								<option value="">-SELECT-</option>
+								<option th:each="ob:${teachers}" th:value="${ob.key}"
+									th:text="${ob.value}"></option>
+							</select>
+						</div>
+						<div class="col-5">
+							<span id="teacherError"></span>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-2">
+							<label>Batch</label>
+						</div>
+						<div class="col-5">
+							<select th:field="*{batch.batchId}" required="required" id="batch"
+								class="form-control">
+								<option value="">-SELECT-</option>
+								<option th:each="ob:${batchs}" th:value="${ob.key}"
+									th:text="${ob.value}"></option>
+							</select>
+						</div>
+						<div class="col-5">
+							<span id="batchError"></span>
+						</div>
+					</div>
+					
+					
+					<br>
+					<div class="row">
+						<div class="col-2">
+							<label>Student</label>
+						</div>
+						<div class="col-5"><!-- th:field="*{studentList}" placeholder="Select students"  -->
+							<select th:field="*{studentList}"  required="required" id="student"
+								class="form-control" multiple="multiple" >
+								<option value="">-SELECT-</option>
+								<option th:each="ob:${students}" th:value="${ob.key}"
+									th:text="${ob.value}"></option>
+									
+							</select>
+						</div>
+						<div class="col-5">
+							<span id="studentError"></span>
+						</div>
+					</div>
+
+					<input type="submit" value="SAVE"  class="btn btn-success text-center mt-5 w-100"  />
+					</div>
+				</form>
+			</div>
+			<!--card body end-->
+
+			<div class="card-header bg-secondary bg-gradient text-white text-center"
+				th:if="${message != null}">
+				<span th:text="${message}"></span>
+			</div>
+
+		</div>
+		<!-- card end -->
+
+	</div>
+	</section>
+	<script type="text/javascript" th:src="@{/js/conference.js}"></script>
+
+
+</body>
+
+</html>
